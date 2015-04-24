@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
    */
   cout << "Data read successfully!" << endl << endl;
   cout << "Points: " << endl;
-  ofile.open("points");
+  ofile.open(options["plot_points_file"].c_str());
   for (mp_type::iterator it = points.begin(); it != points.end(); it++) {
     cartesian_point p;
     transform(*it, p);
@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
   for (vector<double>::iterator it = t.begin(); it != t.end(); it++) {
     cout << *it << "  ";
   }
-  cout << endl;
+  cout << endl << endl;
   
 
   cout << "Approximation in course..." << endl;
@@ -107,7 +107,7 @@ int main(int argc, char** argv) {
    * in order to allow plotting by gnuplot.
    */
   cout << endl << "The approximated nodes (in cartesian coordinates) are:" << endl;
-  ofile.open("knots");
+  ofile.open(options["plot_control_pts_file"].c_str());
   mp_type d = cmp.GetDvals();
   for (mp_type::iterator it = d.begin(); it != d.end(); it++) {
     cartesian_point p;
@@ -118,7 +118,7 @@ int main(int argc, char** argv) {
   ofile.close();
 
   mp_type sp = cmp.GetNuSpline(atoi(options["spline_points"].c_str()));
-  ofile.open("spline");
+  ofile.open(options["plot_spline_file"].c_str());
   for (mp_type::iterator it = sp.begin(); it != sp.end(); it++) {
     // cout << dsv(*it) << endl;
     cartesian_point p;
@@ -128,11 +128,12 @@ int main(int argc, char** argv) {
   ofile.close();
 
   cout << endl << "Plotting data... ";
-  if (atoi(options["plot_knots"].c_str()) == 1)
-    system("gnuplot -persist -e \"sphere='sphere'; points='points'; knots='knots'; spline='spline'\" plotall_knots.gnu");
-  else
-    system("gnuplot -persist -e \"sphere='sphere'; points='points'; spline='spline'\" plotall.gnu");
-  cout << " DONE! Exiting." << endl;
+  string knots = ( atoi(options["plot_knots"].c_str()) == 1 ? "; knots='" + options["plot_control_pts_file"] + "'" : "");
+  string args = "sphere='" + options["plot_sphere_file"] + "'; points='" + options["plot_points_file"] + 
+                "'; spline='" + options["plot_spline_file"] + "'" + knots;
+  string comm = "gnuplot -persist -e \"" + args + "\" " + (atoi(options["plot_knots"].c_str()) == 1 ? "plot/plotall_knots.gnu" : "plot/plotall.gnu");
+  system(comm.c_str());
+  cout << endl << " DONE! Exiting." << endl;
 
   return 0;
 }

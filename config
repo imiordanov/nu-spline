@@ -1,7 +1,11 @@
-points_file tests/random2/points
-tensions_file tests/random2/tensions_100
+points_file tests/helix15/points
+tensions_file tests/helix15/tensions
 tolerance 1e-10
 iterations 10000
 spline_points 43
 uniform 0
-plot_knots 1
+plot_knots 0
+plot_sphere_file plot/sphere
+plot_points_file plot/points
+plot_spline_file plot/spline
+plot_control_pts_file plot/control_points
