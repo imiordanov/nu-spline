@@ -15,6 +15,6 @@ and execute with:
 
   ./a.out config
 
-Different running configurations are to be implemented via config, refer to the example present.
+Different running configurations are to be implemented via configuration files, refer to the example present.
 
 In subsequent versions the structure of the branch will hopefully improve.
