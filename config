@@ -1,0 +1,7 @@
+points_file tests/random2/points
+tensions_file tests/random2/tensions_100
+tolerance 1e-10
+iterations 10000
+spline_points 43
+uniform 0
+plot_knots 1
