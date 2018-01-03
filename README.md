@@ -23,7 +23,7 @@ The configuration is quite simplistic and allows for some parameterization of th
 |points_file            |tests/helix15/points     | File containing the points to interpolate (Spherical Equatorial 2D coordinates)
 |tensions_file          |tests/helix15/tensions   | File containing the tension values (ν-values in the paper)
 |tolerance              |1e-10                    | Error below which the solution is acceptable
-|iterations             |10000                    | Max iterations before interrupting exwcution (if convergence is not achieved)
+|iterations             |10000                    | Max iterations before interrupting execution (if convergence is not achieved)
 |spline_points          |43                       | Now many points to produce in each interval (more = smoother curve)
 |uniform                |0                        | Uniform knot spacing (set to 1) or non-uniform (set to 0), refer to the paper
 |plot_knots             |0                        | Whether to plot the control points (set to 1) or not (set to 0) 
